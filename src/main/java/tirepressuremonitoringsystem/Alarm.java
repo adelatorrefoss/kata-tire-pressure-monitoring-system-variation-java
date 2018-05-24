@@ -9,19 +9,27 @@ public class Alarm {
     private boolean alarmOn = false;
 
     public void check() {
-        double psiPressureValue = sensor.popNextPressurePsiValue();
+        double psiPressureValue = getPressure();
 
         if (psiPressureValue < LowPressureThreshold || HighPressureThreshold < psiPressureValue) {
             if(!isAlarmOn()) {
                 alarmOn = true;
-                System.out.println("Alarm activated!");
+                print("Alarm activated!");
             }
         } else {
             if(isAlarmOn()) {
                 alarmOn = false;
-                System.out.println("Alarm deactivated!");
+                print("Alarm deactivated!");
             }
         }
+    }
+
+    protected void print(String message) {
+        System.out.println(message);
+    }
+
+    protected double getPressure() {
+        return sensor.popNextPressurePsiValue();
     }
 
     private boolean isAlarmOn() {
