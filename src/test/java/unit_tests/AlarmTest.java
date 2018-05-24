@@ -20,6 +20,10 @@ public class AlarmTest {
         FakeAlarm alarm = new FakeAlarm(17);
         alarm.check();
         assertThat(alarm.out, is(""));
+
+        alarm = new FakeAlarm(21);
+        alarm.check();
+        assertThat(alarm.out, is(""));
     }
 
     @Test
