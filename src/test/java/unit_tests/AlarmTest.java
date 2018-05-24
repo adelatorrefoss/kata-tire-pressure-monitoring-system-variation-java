@@ -9,7 +9,7 @@ import static org.hamcrest.Matchers.is;
 public class AlarmTest {
 
     @Test
-    public void fire_alarm_when_pressure_is_too_low() {
+    public void fires_alarm_when_pressure_is_too_low() {
         FakeAlarm alarm = new FakeAlarm(16);
         alarm.check();
         assertThat(alarm.out, is("Alarm activated!"));
@@ -20,6 +20,13 @@ public class AlarmTest {
         FakeAlarm alarm = new FakeAlarm(17);
         alarm.check();
         assertThat(alarm.out, is(""));
+    }
+
+    @Test
+    public void fires_alarm_when_pressure_is_too_high() {
+        FakeAlarm alarm = new FakeAlarm(22);
+        alarm.check();
+        assertThat(alarm.out, is("Alarm activated!"));
     }
 
     private class FakeAlarm extends Alarm {
@@ -42,4 +49,3 @@ public class AlarmTest {
         }
     }
 }
-
